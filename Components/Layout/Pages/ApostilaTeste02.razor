@@ -1,0 +1,39 @@
+﻿@page "/ApostilaTeste02"
+@using ApostilaFront.Model
+
+<PageTitle>Desconto de 9%</PageTitle>
+<h1>Desconto de 9%</h1>
+
+<div class="div_teste01">
+    <label>Valor do produto:</label>
+    <input type="number" @bind="descontoTeste02.ValorProduto" step="0.1" min="0">
+</div>
+
+<div>
+    <br>
+    <button @onclick="CalcularDesconto" class="custom-button" >Calcular Desconto</button>
+    <br>
+</div>
+
+@if (CalculadoTeste02)
+{
+    <table class="result-table">
+        <tr>
+            <td class="result-cell">
+                <strong>Valor com desconto de 9%:</strong>
+                <p>@descontoTeste02.ValorDesconto.ToString("F2")</p>
+            </td>
+        </tr>
+    </table>
+}
+
+@code {
+    private DescontoTeste02 descontoTeste02 = new DescontoTeste02();
+    private bool CalculadoTeste02 = false;
+
+    private void CalcularDesconto()
+    {
+        descontoTeste02.CalcularDescontoTeste02();
+        CalculadoTeste02 = true;
+    }
+}

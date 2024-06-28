@@ -1,0 +1,31 @@
+﻿@using ApostilaFront.Model
+
+<table class="result-table">
+    <tr>
+        <td class="result-cell">
+            <strong>Valor Total:</strong>
+            <p>@CalcularTotal().ToString("C2")</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="result-cell">
+            <strong>Valor Total      /       10% Garçom:<br> </strong>
+            <p>@CalcularValorGarcom().ToString("C2")</p>
+        </td>
+    </tr>
+</table>
+
+@code {
+    [Parameter] public List<Restaurante> listRestaurante { get; set; }
+
+    private decimal CalcularTotal()
+    {
+        return listRestaurante.Sum(r => r.ValorPrato);
+    }
+
+    private decimal CalcularValorGarcom()
+    {
+        decimal valorTotal = CalcularTotal();
+        return valorTotal * 1.1m;
+    }
+}

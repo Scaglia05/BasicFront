@@ -1,0 +1,41 @@
+﻿@page "/"
+@page "/ApostilaTeste01"
+@using System.Globalization
+@using ApostilaFront.Model
+
+
+<PageTitle>Calculadora de Energia</PageTitle>
+<h1>Calculadora de Energia</h1>
+
+<div class="input-container_teste01">
+    <div class="div_teste01">
+        <label>Salário Mínimo:</label>
+        <input type="number" @bind="calculoEnergia.SalarioMinimo" step="0.01" min="0">
+    </div>
+    <div class="div_teste01">
+        <label>Quilowatts Gastos:</label>
+        <input type="number" @bind="calculoEnergia.QtdWatts" step="1" min="0">
+    </div>
+</div>
+
+<div>
+    <br>
+    <button @onclick="CalcularValores" class="custom-button">Calcular</button>
+    <br>
+</div>
+
+@if (calculado)
+{
+    <ParameterTeste01 calculoEnergia=@calculoEnergia></ParameterTeste01>
+}
+
+@code {
+    private CalculoEnergia calculoEnergia = new CalculoEnergia();
+    private bool calculado = false;
+
+    private void CalcularValores()
+    {
+        calculoEnergia.CalcularValor();
+        calculado = true;
+    }
+}

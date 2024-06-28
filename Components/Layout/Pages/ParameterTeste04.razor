@@ -1,0 +1,47 @@
+﻿@using ApostilaFront.Model
+
+@if (listRestaurante == null)
+{
+    <p>
+        <em>
+            Carregando...
+        </em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Prato
+                </th>
+                <th>
+                    Valor
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var restaurante in listRestaurante)
+            {
+                <tr>
+                    <td>@restaurante.NomePrato</td>
+                    <td>@restaurante.ValorPrato</td>
+                    <td><button class="oi oi-trash btn btn-danger" @onclick=@(() => RemoverPrato.InvokeAsync(restaurante))>Excluir </button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    [Parameter] public List<Restaurante> listRestaurante { get; set; }
+    [Parameter] public EventCallback<Restaurante> RemoverPrato { get; set; }
+
+    protected override void OnInitialized()
+    {
+        listRestaurante = new();
+    }
+}
+

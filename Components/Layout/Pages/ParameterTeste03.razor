@@ -1,0 +1,27 @@
+﻿@using ApostilaFront.Model
+
+<table class="result-table"> 
+    <tr>
+        <td class="result-cell">
+            <strong>R$/Hora:</strong>
+            <p>@salarioLiquido.ValorHora.ToString("F2")</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="result-cell">
+            <strong>Aulas/Mês: </strong>
+            <p>@salarioLiquido.AulasMes.ToString("F2")</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="result-cell">
+            <strong>Salário Líquido</strong>
+            <p>@salarioLiquido.CalculoSalarioComDesconto.ToString("F2")</p>
+        </td>
+    </tr>
+</table>
+
+
+@code {
+    [Parameter] public SalarioLiquido salarioLiquido { get; set; }
+}

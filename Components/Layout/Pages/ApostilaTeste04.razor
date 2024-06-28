@@ -1,0 +1,64 @@
+﻿@page "/ApostilaTeste04"
+@using ApostilaFront.Model
+
+<PageTitle>Lista Restaurante</PageTitle>
+<h1>Valor da comanda com os 10%</h1>
+
+<from>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="control-label">Prato</label>
+                <input class="form-control" @bind="@restaurante.NomePrato" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Valor do Prato</label>
+                <input class="form-control" @bind="@restaurante.ValorPrato" />
+            </div>
+        </div>
+    </div>
+</from>
+<div>
+    <br>
+    <input type="button" class="custom-button" @onclick="@AddPrato" value="Adicionar Prato"></input>
+    <br>
+</div>
+
+<ParameterTeste04 RemoverPrato=@RemoverPrato listRestaurante=@listRestaurante></ParameterTeste04>
+<div>
+    <br>
+    <button @onclick=ToggleComandaFechada class="custom-button">Fechar Comanda</button>
+    <br>
+</div>
+
+@if (ComandaFechada)
+{
+    <Teste04ComandaFechada listRestaurante=@listRestaurante></Teste04ComandaFechada>
+}
+
+@code {
+    [Parameter] public Action CalcularTotal { get; set; }
+    Restaurante restaurante = new();
+    List<Restaurante> listRestaurante = new();
+    private bool ComandaFechada = false;
+
+    protected void AddPrato()
+    {
+        listRestaurante.Add(restaurante);
+        CalcularTotal?.Invoke();
+        restaurante = new();
+    }
+
+    protected void RemoverPrato(Restaurante restaurante)
+    {
+        listRestaurante.Remove(restaurante);
+        CalcularTotal?.Invoke();
+    }
+
+    private void ToggleComandaFechada()
+    {
+        ComandaFechada = !ComandaFechada;
+        CalcularTotal?.Invoke();
+    }
+
+}

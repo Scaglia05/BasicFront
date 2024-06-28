@@ -1,0 +1,44 @@
+﻿@page "/ApostilaTeste03"
+@using ApostilaFront.Model
+
+
+<PageTitle>Calculo Salário Professor</PageTitle>
+<h1>Salário Líquido</h1>
+
+<div class="input-container_teste01">
+    <div class="div_teste01">
+        <label>Valor da Hora:</label>
+        <input type="number" @bind="salarioLiquido.ValorHora" step="0.01" min="0">
+    </div>
+    <div class="div_teste01">
+        <label>Número de Aulas/Mês:</label>
+        <input type="number" @bind="salarioLiquido.AulasMes" step="1" min="0">
+    </div>
+    <div class="div_teste01">
+        <label>Porcentual de Desconto:</label>
+        <input type="number" @bind="salarioLiquido.PorcentualDesconto" step="1" min="0">
+    </div>
+</div>
+<div>
+    <br>
+    <button @onclick=CalcularSalario class="custom-button"> Calcular Salário</button>
+    <br>
+</div>
+
+@if (CalcularTeste03)
+{
+    <ParameterTeste03 salarioLiquido=@salarioLiquido></ParameterTeste03>
+}
+
+@code {
+    private SalarioLiquido salarioLiquido = new SalarioLiquido();
+    private bool CalcularTeste03 = false;
+
+    private void CalcularSalario()
+    {
+        salarioLiquido.CalcularSalarioLiquido();
+        CalcularTeste03 = true;
+    }
+
+
+}

@@ -1,0 +1,86 @@
+﻿@page "/ApostilaTeste27"
+@using ApostilaFront.Model
+
+<h2>Promoção Semanal</h2>
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="control-label">Nome:  </label>
+                <input class="form-control" @bind=@semanaDesconto.Nome min="0" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Valor da comanda: </label>
+                <input class="form-control" @bind=@semanaDesconto.ValordaConta min="0" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="input-container_teste01">
+    <div>
+        <br>
+        <button class=" custom-button" @onclick=ToggleDesconto>Exibir</button>
+        <br>
+    </div>
+    <div>
+        <br>
+        <button class=" custom-button" @onclick="CalcularSemanaDesconto">Calcular Desconto</button>
+        <br>
+    </div>
+</div>
+
+@if (MostrarDesconto)
+{
+    if (string.IsNullOrEmpty(semanaDesconto.Nome))
+    {
+        <table class="result-table">
+            <tr>
+                <td class="result-cell">
+                    <h5>Carregando...</h5>
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+
+        if ((!string.IsNullOrEmpty(semanaDesconto.Nome) && "ADMS".Contains(semanaDesconto.Nome[0].ToString().ToUpper())))
+        {
+            <table class="result-table">
+                <tr>
+                    <td class="result-cell">
+                        <strong>Desconto Semanal:</strong>
+                        <p>@semanaDesconto.ValorDesconto.ToString("C2")</p>
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <table class="result-table alert-dark">
+                <tr>
+                    <td class="result-cell">
+                        <h5 class="border-danger">"Que pena. Nesta semana, o desconto não é para seu nome, mas continue nos prestigiando que sua vez chegará."</h5>
+                    </td>
+                </tr>
+            </table>
+        }
+    }
+}
+
+@code {
+    public SemanaDesconto semanaDesconto = new();
+    private bool MostrarDesconto = false;
+
+    private void CalcularSemanaDesconto()
+    {
+        semanaDesconto.CalcularSemanaDesconto();
+    }
+
+    private void ToggleDesconto()
+    {
+        MostrarDesconto = !MostrarDesconto;
+    }
+}

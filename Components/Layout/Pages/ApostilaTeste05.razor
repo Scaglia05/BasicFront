@@ -1,0 +1,68 @@
+﻿@page "/ApostilaTeste05"
+@using ApostilaFront.Model
+
+<PageTitle> Poupança Programada</PageTitle>
+
+<h1>Calculo da Poupança Programada</h1>
+
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="control-label">Valor da Aplicação / Mensal: </label>
+                <input class="form-control" @bind=@poupancaProgramada.AplicacaoMensal min="0" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Taxa: </label>
+                <input class="form-control" @bind=@poupancaProgramada.Taxa min="0" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Número de meses:</label>
+                <select class="form-control" @bind="@poupancaProgramada.NMeses">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <br>
+    <button class=" custom-button" @onclick=ToggleCalcularAplicacao>Calcular Aplicação</button>
+    <br>
+</div>
+@if (MostrarAplicacao)
+{
+    <table class="result-table">
+        <tr>
+            <td class="result-cell">
+                <strong>Valor Acumulado:</strong>
+                <p>@ValorAcumulado().ToString("C2")</p>
+            </td>
+        </tr>
+    </table>
+}
+
+@code {
+    private bool MostrarAplicacao = false;
+    private PoupancaProgramada poupancaProgramada = new();
+
+    private void ToggleCalcularAplicacao()
+    {
+        MostrarAplicacao = !MostrarAplicacao;
+    }
+    private decimal ValorAcumulado()
+    {
+        // Calcula (1+i)^n
+        decimal baseElevada = (decimal)Math.Pow((double)(1 + poupancaProgramada.Taxa), poupancaProgramada.NMeses);
+
+        // Calcula o valor acumulado
+        decimal ContaVAcumulado = poupancaProgramada.AplicacaoMensal * (baseElevada - 1) / poupancaProgramada.Taxa;
+
+        return ContaVAcumulado;
+    }
+
+}

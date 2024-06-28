@@ -1,0 +1,67 @@
+﻿@* <div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="file://ss/Programacao/Treinamentos%20C%23/0%20-%20Fundamentos%20da%20Linguagem/Apostila%20C%23%20Fundamentos_2019.pdf">Desafio Apostilha</a>
+    </div>
+</div> *@
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" @onclick="ToggleNavbar">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="pdfs/Apostila%20C%23%20Fundamentos_2019.pdf" Match="NavLinkMatch.All" target="_blank">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Apostila Desafio
+            </NavLink>
+        </div>
+        <div class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="pdfs/Apostila_SDK%208_Nova.pdf" Match="NavLinkMatch.All" target="_blank">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Crud
+                </NavLink>
+
+            </div>
+
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste01">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (1)
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste02">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (2)
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste03">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (3)
+            </NavLink>
+        </div>   <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste04">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (4)
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste05">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (5)
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste06">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (6)
+            </NavLink>
+        </div>       <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/ApostilaTeste27">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Desafio (27)
+            </NavLink>
+        </div>
+    </nav>
+</div>
+@code {
+    private bool IsNavbarOpen = false;
+
+    private void ToggleNavbar()
+    {
+        IsNavbarOpen = !IsNavbarOpen;
+    }
+}

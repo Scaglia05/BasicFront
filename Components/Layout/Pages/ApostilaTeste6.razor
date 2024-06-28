@@ -1,0 +1,94 @@
+﻿@page "/ApostilaTeste06"
+@using ApostilaFront.Model
+<h1>Exibição</h1>
+
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="control-label"><h3>Verificação:</h3></label>
+                <input class="form-control" @bind=@exibir_Vinte.Min_Vinte min="0" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="input-container_teste01">
+<div>
+    <br>
+    <button class="custom-button" @onclick=ToggleExibir_teste06>EXIBIR</button>
+    <br>
+</div>
+<div
+    <br>
+    <button class="custom-button" @onclick=Exibir_teste06NV>VERIFICAR NOVAMENTE</button>
+    <br>
+</div>
+</div>
+
+@if (Botao_teste06NV)
+
+    @if (exibir_Vinte.Min_Vinte >= 20)
+    {
+        <table class="result-table">
+            <tr>
+                <td class="result-cell">
+                    <strong>Devolução:</strong>
+                    <p>@exibir_Vinte.Min_Vinte.ToString("C2")</p>
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="result-table">
+            <tr>
+                <td class="alert-danger">
+                    <strong>Menor que 20!</strong>
+                </td>
+            </tr>
+        </table>
+    }
+@if (Botao_teste06)
+{
+    @if (exibir_Vinte.Min_Vinte >= 20)
+    {
+        <table class="result-table">
+            <tr>
+                <td class="result-cell">
+                    <strong>Devolução:</strong>
+                    <p>@exibir_Vinte.Min_Vinte.ToString("C2")</p>
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="result-table">
+            <tr>
+                <td class="alert-danger">
+                    <strong>Menor que 20!</strong>
+                </td>
+            </tr>
+        </table>
+    }
+}
+
+@code {
+
+    private bool Botao_teste06NV = false;
+
+    private void Exibir_teste06NV()
+    {
+
+        bool Botao_teste06NV = true;
+    }
+
+    private bool Botao_teste06 = false;
+    private Exibir_vinte exibir_Vinte = new();
+    private void ToggleExibir_teste06()
+    {
+    Botao_teste06 = !Botao_teste06;
+    }
+
+}

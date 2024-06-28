@@ -1,0 +1,27 @@
+﻿@using ApostilaFront.Model
+
+
+<table class="result-table">
+    <tr>
+        <td class="result-cell">
+            <strong>Valor em reais de cada quilowatt:</strong>
+            <p> @calculoEnergia.ValorPorKWatts.ToString("F2")</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="result-cell">
+            <strong>Valor total a ser pago:</strong>
+            <p>@calculoEnergia.ValorTotal.ToString("F2")</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="result-cell">
+            <strong>Valor total a ser pago com 10% de desconto:</strong>
+            <p>@calculoEnergia.ValorTotalDesconto.ToString("F2")</p>
+        </td>
+    </tr>
+</table>
+
+@code {
+    [Parameter] public CalculoEnergia calculoEnergia { get; set; }
+}
